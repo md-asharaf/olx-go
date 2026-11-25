@@ -10,21 +10,21 @@ import (
 )
 
 func Connect(databaseUrl string) (*sql.DB, error) {
-  db, err := sql.Open("pgx", databaseUrl)
-  if err != nil {
-    return nil, fmt.Errorf("sql.Open: %w", err)
-  }
+	db, err := sql.Open("pgx", databaseUrl)
+	if err != nil {
+		return nil, fmt.Errorf("sql.Open: %w", err)
+	}
 
-  db.SetMaxOpenConns(25)
-  db.SetMaxIdleConns(25)
-  db.SetConnMaxLifetime(time.Minute * 5)
+	db.SetMaxOpenConns(25)
+	db.SetMaxIdleConns(25)
+	db.SetConnMaxLifetime(time.Minute * 5)
 
-  ctx, cancel := context.WithTimeout(context.Background(),15 * time.Second)
-  defer cancel()
+	ctx, cancel := context.WithTimeout(context.Background(), 15*time.Second)
+	defer cancel()
 
-  if err := db.PingContext(ctx); err != nil {
-    return nil, fmt.Errorf("db.pingContext: %w", err)
-  }
+	if err := db.PingContext(ctx); err != nil {
+		return nil, fmt.Errorf("db.pingContext: %w", err)
+	}
 
-  return db,nil
+	return db, nil
 }
