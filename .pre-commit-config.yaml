@@ -6,3 +6,8 @@ repos:
         entry: gofmt -w
         language: system
         types: [go]
+      - id: pg-format
+        name: pg_format
+        entry: pg_format --inplace
+        language: system
+        types: [sql]

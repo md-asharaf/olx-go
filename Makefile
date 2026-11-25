@@ -1,4 +1,4 @@
-.PHONY: build run format migrate-up migrate-down
+.PHONY: build run format format-sql migrate-up migrate-down
 
 build:
 	@go build -o ./bin/api ./cmd/api
@@ -8,6 +8,10 @@ run: build
 
 format:
 	@go fmt ./...
+	@$(MAKE) format-sql
+
+format-sql:
+	@pg_format --inplace migrations/*.sql
 
 migrate-up:
 	@go run ./cmd/migrate up

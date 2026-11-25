@@ -1,9 +1,10 @@
 CREATE TABLE products (
-  id UUID PRIMARY KEY DEFAULT gen_random_uuid(),
-  title TEXT NOT NULL,
-  description TEXT NOT NULL,
-  price BIGINT NOT NULL,
-  status TEXT NOT NULL,
-  city TEXT NOT NULL,
-  created_at TIMESTAMPTZ NOT NULL DEFAULT NOW()
+    id uuid PRIMARY KEY DEFAULT gen_random_uuid (),
+    title text NOT NULL,
+    description text NOT NULL,
+    price bigint NOT NULL,
+    status text NOT NULL,
+    city text NOT NULL,
+    created_at timestamptz NOT NULL DEFAULT NOW()
 );
+
